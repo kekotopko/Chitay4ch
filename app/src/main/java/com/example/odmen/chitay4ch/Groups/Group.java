@@ -1,4 +1,4 @@
-package com.example.odmen.chitay4ch;
+package com.example.odmen.chitay4ch.Groups;
 
 import com.google.gson.annotations.SerializedName;
 

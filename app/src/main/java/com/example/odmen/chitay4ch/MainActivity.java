@@ -1,23 +1,20 @@
 package com.example.odmen.chitay4ch;
 
-import android.content.ClipData;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.odmen.chitay4ch.Adapter.AdapterRecyclerPublic;
+import com.example.odmen.chitay4ch.Groups.Data;
+import com.example.odmen.chitay4ch.Groups.Group;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         try {
                             Group group = list.get(0);
                             addgroup(group.getName(), group.getScreen_name(), group.getPhoto_50(), group.getId());
-                            Toast.makeText(MainActivity.this,"Паблик добавлен",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Паблик добавлен", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(MainActivity.this, "Паблик с таким id не найден", Toast.LENGTH_LONG).show();
                         }

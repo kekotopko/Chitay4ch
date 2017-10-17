@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.odmen.chitay4ch.Group;
+import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
 import com.squareup.picasso.Picasso;
 
