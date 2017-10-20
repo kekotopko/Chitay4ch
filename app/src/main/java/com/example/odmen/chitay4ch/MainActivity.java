@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DBuser dBuser;
     EditText editname;
     ImageView imageView;
-
     private AdapterRecyclerPublic adapter;
 
     @Override

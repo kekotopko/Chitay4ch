@@ -70,7 +70,7 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView idpublic;
         private ImageView image;

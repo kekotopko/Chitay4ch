@@ -22,4 +22,11 @@ public class Post {
     @SerializedName("attachments")
     List<Attachment> attachmentseslist;
 
+    public long getDate() {
+        return date;
+    }
+
+    public String getText() {
+        return text;
+    }
 }
