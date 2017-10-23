@@ -3,41 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    >
+
+<android.support.v7.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:id="@+id/itemwall">
 
-
-    <TextView
-        android:id="@+id/textdate"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="18dp"
-        android:text="date"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textdate"
-        android:layout_alignStart="@+id/textdate"
-        android:layout_below="@+id/textdate"
-        android:layout_marginTop="10dp"
-        android:text="ttext" />
 
-    <ImageView
-        android:id="@+id/imageWall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="99dp"
-        android:layout_marginStart="99dp"
-        android:layout_toEndOf="@+id/text"
-        android:layout_toRightOf="@+id/text"
-        app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="date" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageAvatar"
+            android:layout_alignStart="@+id/imageAvatar"
+            android:layout_below="@+id/imageAvatar"
+            android:text="text" />
+
+        <ImageView
+            android:id="@+id/imageAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/wallconteiner"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/text"
+            android:layout_marginTop="22dp"
+            app:srcCompat="@drawable/check" />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
 
 
 </RelativeLayout>

@@ -15,5 +15,5 @@ public interface VkGroupApi {
     Call<Data> getData(@Query("access_token") String token, @Query("v") String version, @Query("group_ids") String name);
 
     @GET("method/wall.get")
-    Call<Data> getPost(@Query("access_token") String token, @Query("v") String version, @Query("owner_id") int owner_id);
+    Call<com.example.odmen.chitay4ch.Wall.Data> getPost(@Query("access_token") String token, @Query("v") String version, @Query("owner_id") int owner_id);
 }

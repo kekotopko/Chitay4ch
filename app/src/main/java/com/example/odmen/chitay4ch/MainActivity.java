@@ -1,12 +1,14 @@
 package com.example.odmen.chitay4ch;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +23,7 @@ import java.util.List;
 
 import retrofit2.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     RecyclerView recyclerView;
     List<Group> items;
     DBuser dBuser;
@@ -43,17 +45,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new AdapterRecyclerPublic(items, new AdapterRecyclerPublic.MyonClick() {
+        adapter = new AdapterRecyclerPublic(items, new AdapterRecyclerPublic.MyonClick(){
             @Override
             public void click(Group group) {
                 items.remove(group);
                 dbdeleting(group);
                 adapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void clickstart(Group group) {
+                Intent intent=new Intent(MainActivity.this,Activity_Wall.class);
+                intent.putExtra("id",group.getId());
+                startActivityForResult(intent,1533);
+                Log.d("tag",String.valueOf(group.getId()));
+            }
         });
 
         recyclerView.setAdapter(adapter);
     }
+
+
 
 
     @Override
@@ -67,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         List<Group> list = response.body().response;
                         try {
                             Group group = list.get(0);
-                            addgroup(group.getName(), group.getScreen_name(), group.getPhoto_50(), group.getId());
+                            addgroup(group.getName(), group.getScreen_name(), group.getPhoto_50(), (int) group.getId());
                             Toast.makeText(MainActivity.this, "Паблик добавлен", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             Toast.makeText(MainActivity.this, "Паблик с таким id не найден", Toast.LENGTH_LONG).show();
@@ -97,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int img = cursor.getColumnIndex("image");
             int scrnname = cursor.getColumnIndex("scrn_name");
             do {
-                long _id = cursor.getLong(id);
+                int _id = cursor.getInt(id);
                 String _name = cursor.getString(name);
                 String _img = cursor.getString(img);
                 long _dbid = cursor.getLong(dbid);
@@ -110,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cursor.close();
     }
 
-    public void addgroup(String name, String scrnname, String img, long id) {
+    public void addgroup(String name, String scrnname, String img, int id) {
         ContentValues contentValues = new ContentValues();
         SQLiteDatabase sqLiteDatabase = dBuser.getWritableDatabase();
 
@@ -128,4 +140,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         database.delete("public", "vkid=?", new String[]{String.valueOf(group.getId())});
 
     }
+
 }

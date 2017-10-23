@@ -5,5 +5,5 @@ package com.example.odmen.chitay4ch.Wall;
  */
 
 public class Data {
-    Response response;
+    public Response response;
 }

@@ -1,6 +1,7 @@
 package com.example.odmen.chitay4ch.Adapter;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,11 +27,18 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
 
     public interface MyonClick {
         void click(Group group);
+        void clickstart(Group group);
     }
+
+
+
+
+
 
     public AdapterRecyclerPublic(List<Group> items, MyonClick click) {
         this.itemss = items;
         this.click = click;
+
     }
 
     @Override
@@ -57,10 +65,18 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
                     }
                 });
                 builder.show();
-
                 return true;
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.clickstart(item);
+            }
+        });
+
+
+
 
     }
 

@@ -9,7 +9,11 @@ import android.widget.TextView;
 
 import com.example.odmen.chitay4ch.R;
 import com.example.odmen.chitay4ch.Wall.Post;
+import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,8 +37,11 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Post post = posts.get(position);
+        long date= post.getDate()*1000;
+        Date date1=new Date(date);
+        DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
         holder.name.setText(post.getText());
-        holder.textdate.setText(String.valueOf(post.getDate()));
+        holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
 
     }
 
@@ -51,7 +58,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.text);
             textdate = (TextView) itemView.findViewById(R.id.textdate);
-            image = (ImageView) itemView.findViewById(R.id.imageWall);
+            image = (ImageView) itemView.findViewById(R.id.imageAvatar);
         }
     }
 

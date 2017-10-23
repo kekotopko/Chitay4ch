@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class Group {
 
     @SerializedName("id")
-    long id;
+    int id;
     @SerializedName("name")
     String name;
     @SerializedName("photo_200")
@@ -17,14 +17,14 @@ public class Group {
     @SerializedName("screen_name")
     String screen_name;
 
-    public Group(long id, String name, String photo, String screen_name) {
+    public Group(int id, String name, String photo, String screen_name) {
         this.id = id;
         this.name = name;
         this.photo = photo;
         this.screen_name=screen_name;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ public class Group {
     }
 
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
