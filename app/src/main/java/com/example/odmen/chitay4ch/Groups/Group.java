@@ -1,12 +1,15 @@
 package com.example.odmen.chitay4ch.Groups;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by odmen on 11.10.2017.
  */
 
-public class Group {
+public class Group implements Parcelable {
 
     @SerializedName("id")
     int id;
@@ -23,6 +26,25 @@ public class Group {
         this.photo = photo;
         this.screen_name=screen_name;
     }
+
+    protected Group(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        photo = in.readString();
+        screen_name = in.readString();
+    }
+
+    public static final Creator<Group> CREATOR = new Creator<Group>() {
+        @Override
+        public Group createFromParcel(Parcel in) {
+            return new Group(in);
+        }
+
+        @Override
+        public Group[] newArray(int size) {
+            return new Group[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -55,5 +77,18 @@ public class Group {
 
     public void setScreen_name(String screen_name) {
         this.screen_name = screen_name;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(photo);
+        parcel.writeString(screen_name);
     }
 }

@@ -5,22 +5,24 @@
     android:layout_height="wrap_content"
     >
 
-<android.support.v7.widget.CardView
+<LinearLayout
+    android:layout_margin="4dp"
     android:layout_width="wrap_content"
+    android:background="@drawable/editeextstyle2"
     android:layout_height="wrap_content"
     android:id="@+id/itemwall">
 
     <RelativeLayout
         android:layout_width="wrap_content"
+        android:padding="4dp"
         android:layout_height="wrap_content">
-
-
 
         <TextView
             android:id="@+id/textdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_margin="4dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="date" />
@@ -29,19 +31,21 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:layout_alignLeft="@+id/imageAvatar"
             android:layout_alignStart="@+id/imageAvatar"
             android:layout_below="@+id/imageAvatar"
             android:text="text" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="13dp"
+            android:layout_margin="5dp"
             android:layout_marginStart="13dp"
             app:srcCompat="@mipmap/ic_launcher" />
 
@@ -50,7 +54,7 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_alignParentEnd="true"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
@@ -59,8 +63,9 @@
             app:srcCompat="@drawable/check" />
 
 
+
     </RelativeLayout>
-</android.support.v7.widget.CardView>
+</LinearLayout>
 
 
 </RelativeLayout>

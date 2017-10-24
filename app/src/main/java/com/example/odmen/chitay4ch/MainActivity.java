@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<Group> items;
     DBuser dBuser;
     EditText editname;
-    ImageView imageView;
+    ImageView imageView,imageAvatar;
     private AdapterRecyclerPublic adapter;
 
     @Override
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerpubilcs);
         imageView = (ImageView) findViewById(R.id.imagePoisk);
+        imageAvatar= (ImageView) findViewById(R.id.imageAvatar);
         editname = (EditText) findViewById(R.id.editname);
         imageView.setOnClickListener(this);
         items = new ArrayList<>();
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void clickstart(Group group) {
                 Intent intent=new Intent(MainActivity.this,Activity_Wall.class);
-                intent.putExtra("id",group.getId());
+                intent.putExtra("group",group);
                 startActivityForResult(intent,1533);
                 Log.d("tag",String.valueOf(group.getId()));
             }

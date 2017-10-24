@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.odmen.chitay4ch.Adapter.AdapterWall;
+import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.Wall.Data;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.squareup.picasso.Picasso;
@@ -36,23 +37,34 @@ public class Activity_Wall extends AppCompatActivity {
     ImageView imageView;
     RecyclerView recyclerView;
     private AdapterWall adapterWall;
-    String img;
+    String photo;
+    int count = 0;
     List<Post> posts = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        id=getIntent().getIntExtra("id",-45745333);
-        imageView= (ImageView) findViewById(R.id.imageAvatar);
-
-
+        Group group = getIntent().getParcelableExtra("group");
+        id = group.getId();
+        photo = group.getPhoto_50();
+        imageView = (ImageView) findViewById(R.id.imageAvatar);
         setContentView(R.layout.listwall);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerwall);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        getPost(count);
 
+        adapterWall = new AdapterWall(posts, group, new AdapterWall.LoadClick() {
+            @Override
+            public void getOldpost(Post post) {
+                getPost(100);
+            }
+        });
+        recyclerView.setAdapter(adapterWall);
+    }
 
-        App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", id*(-1)).enqueue(new Callback<Data>() {
+    public void getPost(int count) {
+        App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", id * (-1), 100, count).enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 posts.addAll(response.body().response.items);
@@ -62,11 +74,9 @@ public class Activity_Wall extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Data> call, Throwable t) {
-                Toast.makeText(Activity_Wall.this,"nit",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Wall.this, "nit", Toast.LENGTH_SHORT).show();
             }
         });
-        adapterWall = new AdapterWall(posts);
-        recyclerView.setAdapter(adapterWall);
     }
 
 }

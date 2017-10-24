@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.squareup.picasso.Picasso;
@@ -22,44 +23,74 @@ import java.util.List;
 
 public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private List<Post> posts;
+    private Group group;
+    private LoadClick loadClick;
 
-    public AdapterWall(List<Post> posts) {
+    public AdapterWall(List<Post> posts, Group group, LoadClick loadClick) {
         this.posts = posts;
+        this.group = group;
+        this.loadClick = loadClick;
+    }
+
+    public interface LoadClick {
+        void getOldpost(Post post);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemwall, parent, false);
+        View view;
+        if (viewType == R.layout.itemwall) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemwall, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.btnloadpost, parent, false);
+        }
+
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Post post = posts.get(position);
-        long date= post.getDate()*1000;
-        Date date1=new Date(date);
-        DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        holder.name.setText(post.getText());
-        holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        if (position == posts.size()) {
+            holder.imageBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadClick.getOldpost(posts.get(position));
+                }
+            });
+        } else {
+            long date = posts.get(position).getDate() * 1000;
+            Date date1 = new Date(date);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            holder.name.setText(posts.get(position).getText());
+            Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
+            holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
+        }
+
 
     }
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        return posts.size() +1;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name, textdate;
-        public ImageView image;
+        public ImageView image, imageBtn;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.text);
             textdate = (TextView) itemView.findViewById(R.id.textdate);
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
+            imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
         }
+
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return (position == posts.size()) ? R.layout.btnloadpost : R.layout.itemwall;
+    }
 }
