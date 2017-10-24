@@ -33,7 +33,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     }
 
     public interface LoadClick {
-        void getOldpost(Post post);
+        void getOldpost();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.imageBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadClick.getOldpost(posts.get(position));
+                    loadClick.getOldpost();
                 }
             });
         } else {
@@ -72,7 +72,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return posts.size() +1;
+        return posts.size() + 1;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

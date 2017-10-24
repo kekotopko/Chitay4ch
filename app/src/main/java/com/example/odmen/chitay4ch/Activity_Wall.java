@@ -38,7 +38,6 @@ public class Activity_Wall extends AppCompatActivity {
     RecyclerView recyclerView;
     private AdapterWall adapterWall;
     String photo;
-    int count = 0;
     List<Post> posts = new ArrayList<>();
 
     @Override
@@ -52,24 +51,23 @@ public class Activity_Wall extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerwall);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        getPost(count);
+        getPost(0);
 
         adapterWall = new AdapterWall(posts, group, new AdapterWall.LoadClick() {
             @Override
-            public void getOldpost(Post post) {
-                getPost(100);
+            public void getOldpost() {
+                getPost(posts.size() + 100);
             }
         });
         recyclerView.setAdapter(adapterWall);
     }
 
-    public void getPost(int count) {
+    public void getPost(final int count) {
         App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", id * (-1), 100, count).enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 posts.addAll(response.body().response.items);
                 adapterWall.notifyDataSetChanged();
-
             }
 
             @Override
