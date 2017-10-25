@@ -29,10 +29,9 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
     }
 
     public void setData(List<Photo> data) {
-        for(int i=0;i<data.size();i++){
-            photos.add(data.get(i));
-            notifyDataSetChanged();
-        }
+        photos.clear();
+        photos.addAll(data);
+        notifyDataSetChanged();
     }
 
     public void setRowIndex(int index) {
@@ -50,11 +49,7 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String url = photos.get(position).getPhoto();
-        if (url == null) {
-            holder.imagePhoto.setVisibility(View.GONE);
-        } else {
-            Picasso.with(holder.itemView.getContext()).load(photos.get(position).getPhoto()).into(holder.imagePhoto);
-        }
+        Picasso.with(holder.itemView.getContext()).load(photos.get(position).getPhoto()).into(holder.imagePhoto);
 
     }
 

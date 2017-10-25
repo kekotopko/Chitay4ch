@@ -26,7 +26,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private List<Post> posts;
     private Group group;
     private LoadClick loadClick;
-    private static RecyclerView horizontallist;
+
 
     public AdapterWall(List<Post> posts, Group group, LoadClick loadClick) {
         this.posts = posts;
@@ -69,6 +69,11 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
             holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
             holder.adapterHorizontalPhoto.setRowIndex(position);
+            if (posts.get(position).getlistphoto().isEmpty()) {
+                holder.horizontallist.setVisibility(View.GONE);
+            } else {
+                holder.horizontallist.setVisibility(View.VISIBLE);
+            }
         }
 
     }
@@ -82,6 +87,8 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         public TextView name, textdate;
         public ImageView image, imageBtn;
         private AdapterHorizontalPhoto adapterHorizontalPhoto;
+        RecyclerView horizontallist;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -90,11 +97,14 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
             imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
 
+
             horizontallist = (RecyclerView) itemView.findViewById(R.id.listPhoto);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
-            horizontallist.setLayoutManager(layoutManager);
-            adapterHorizontalPhoto = new AdapterHorizontalPhoto();
-            horizontallist.setAdapter(adapterHorizontalPhoto);
+            if (horizontallist != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+                horizontallist.setLayoutManager(layoutManager);
+                adapterHorizontalPhoto = new AdapterHorizontalPhoto();
+                horizontallist.setAdapter(adapterHorizontalPhoto);
+            }
         }
 
     }
