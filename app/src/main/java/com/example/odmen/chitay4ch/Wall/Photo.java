@@ -11,4 +11,9 @@ public class Photo {
     int id;
     @SerializedName("photo_604")
     String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.odmen.chitay4ch.Adapter;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private List<Post> posts;
     private Group group;
     private LoadClick loadClick;
+    private static RecyclerView horizontallist;
 
     public AdapterWall(List<Post> posts, Group group, LoadClick loadClick) {
         this.posts = posts;
@@ -65,6 +67,8 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.name.setText(posts.get(position).getText());
             Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
             holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
+           holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
+            holder.adapterHorizontalPhoto.setRowIndex(position);
         }
 
 
@@ -78,6 +82,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name, textdate;
         public ImageView image, imageBtn;
+        private AdapterHorizontalPhoto adapterHorizontalPhoto;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -85,6 +90,11 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             textdate = (TextView) itemView.findViewById(R.id.textdate);
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
             imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
+
+            horizontallist = (RecyclerView) itemView.findViewById(R.id.listPhoto);
+            horizontallist.setLayoutManager(new LinearLayoutManager(name.getContext(), LinearLayoutManager.HORIZONTAL,false));
+            adapterHorizontalPhoto = new AdapterHorizontalPhoto();
+            horizontallist.setAdapter(adapterHorizontalPhoto);
         }
 
     }

@@ -24,12 +24,12 @@ import java.util.List;
 
 import retrofit2.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView;
     List<Group> items;
     DBuser dBuser;
     EditText editname;
-    ImageView imageView,imageAvatar;
+    ImageView imageView, imageAvatar;
     private AdapterRecyclerPublic adapter;
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerpubilcs);
         imageView = (ImageView) findViewById(R.id.imagePoisk);
-        imageAvatar= (ImageView) findViewById(R.id.imageAvatar);
+        imageAvatar = (ImageView) findViewById(R.id.imageAvatar);
         editname = (EditText) findViewById(R.id.editname);
         imageView.setOnClickListener(this);
         items = new ArrayList<>();
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new AdapterRecyclerPublic(items, new AdapterRecyclerPublic.MyonClick(){
+        adapter = new AdapterRecyclerPublic(items, new AdapterRecyclerPublic.MyonClick() {
             @Override
             public void click(Group group) {
                 items.remove(group);
@@ -57,17 +57,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void clickstart(Group group) {
-                Intent intent=new Intent(MainActivity.this,Activity_Wall.class);
-                intent.putExtra("group",group);
-                startActivityForResult(intent,1533);
-                Log.d("tag",String.valueOf(group.getId()));
+                Intent intent = new Intent(MainActivity.this, Activity_Wall.class);
+                intent.putExtra("group", group);
+                startActivityForResult(intent, 1533);
+                Log.d("tag", String.valueOf(group.getId()));
             }
         });
 
         recyclerView.setAdapter(adapter);
     }
-
-
 
 
     @Override

@@ -11,4 +11,13 @@ public class Attachment {
     String type;
     @SerializedName("photo")
     Photo photo;
+
+
+    public String getType() {
+        return type;
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
 }

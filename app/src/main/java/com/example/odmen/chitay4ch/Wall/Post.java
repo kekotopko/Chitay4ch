@@ -2,6 +2,7 @@ package com.example.odmen.chitay4ch.Wall;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,6 +10,9 @@ import java.util.List;
  */
 
 public class Post {
+
+
+
     @SerializedName("id")
     int id;
     @SerializedName("from_id")
@@ -28,6 +32,19 @@ public class Post {
 
     public String getText() {
         return text;
+    }
+
+    public  List<Photo> getlistphoto() {
+        List<Photo> photos = new ArrayList<>();
+        for (int i = 0; i < attachmentseslist.size(); i++) {
+
+            Attachment attachment = new Attachment();
+            attachment = attachmentseslist.get(i);
+            if (attachment.getType().equals("photo")) {
+                photos.add(attachment.getPhoto());
+            }
+        }
+        return photos;
     }
 
 
