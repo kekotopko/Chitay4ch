@@ -67,10 +67,9 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.name.setText(posts.get(position).getText());
             Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
             holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
-           holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
+            holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
             holder.adapterHorizontalPhoto.setRowIndex(position);
         }
-
 
     }
 
@@ -92,7 +91,8 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
 
             horizontallist = (RecyclerView) itemView.findViewById(R.id.listPhoto);
-            horizontallist.setLayoutManager(new LinearLayoutManager(name.getContext(), LinearLayoutManager.HORIZONTAL,false));
+            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+            horizontallist.setLayoutManager(layoutManager);
             adapterHorizontalPhoto = new AdapterHorizontalPhoto();
             horizontallist.setAdapter(adapterHorizontalPhoto);
         }
