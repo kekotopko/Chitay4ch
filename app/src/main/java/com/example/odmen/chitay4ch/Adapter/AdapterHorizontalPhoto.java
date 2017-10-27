@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.odmen.chitay4ch.R;
 import com.example.odmen.chitay4ch.Wall.Attachment;
@@ -48,7 +50,9 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String url = photos.get(position).getPhoto();
+        double prop = photos.get(position).getWidth() / photos.get(position).getHeight();
+        float params = holder.imagePhoto.getContext().getResources().getDisplayMetrics().density;
+        holder.imagePhoto.setLayoutParams(new LinearLayout.LayoutParams((int) (photos.get(position).getHeight() * prop), (int) (photos.get(position).getHeight() * prop)));
         Picasso.with(holder.itemView.getContext()).load(photos.get(position).getPhoto()).into(holder.imagePhoto);
 
     }

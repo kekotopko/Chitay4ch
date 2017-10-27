@@ -11,6 +11,18 @@ public class Photo {
     int id;
     @SerializedName("photo_604")
     String photo;
+    @SerializedName("width")
+    int width;
+    @SerializedName("height")
+    int height;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 
     public String getPhoto() {
         return photo;
