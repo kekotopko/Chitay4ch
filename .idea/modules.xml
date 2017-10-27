@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Chitay4ch.iml" filepath="$PROJECT_DIR$/Chitay4ch.iml" />
       <module fileurl="file://D:\android\projects\Chitay4ch new\Chitay4ch.iml" filepath="D:\android\projects\Chitay4ch new\Chitay4ch.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Chitay4ch new.iml" filepath="$PROJECT_DIR$/Chitay4ch new.iml" />
+      <module fileurl="file://C:\Users\odmen\Desktop\Chitay4ch\Chitay4ch new.iml" filepath="C:\Users\odmen\Desktop\Chitay4ch\Chitay4ch new.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://D:\android\projects\Chitay4ch new\app\app.iml" filepath="D:\android\projects\Chitay4ch new\app\app.iml" />
     </modules>
