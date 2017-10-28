@@ -33,16 +33,21 @@ public class Post {
         return text;
     }
 
+
+
     public List<Photo> getlistphoto() {
         List<Photo> photos = new ArrayList<>();
-        for (int i = 0; i < attachmentseslist.size(); i++) {
-            Attachment attachment = attachmentseslist.get(i);
-            if (attachment.getType().equals("photo")) {
-                photos.add(attachment.getPhoto());
+        if (attachmentseslist != null) {
+            for (int i = 0; i < attachmentseslist.size(); i++) {
+                Attachment attachment = attachmentseslist.get(i);
+                if (attachment.getType().equals("photo")) {
+                    photos.add(attachment.getPhoto());
+                }
             }
         }
-        return photos;
-    }
+            return photos;
+           }
+
 
 
 }

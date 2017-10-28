@@ -53,7 +53,7 @@ public class Activity_Wall extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         getPost(0);
 
-        adapterWall = new AdapterWall(posts, group, new AdapterWall.LoadClick() {
+        adapterWall = new AdapterWall(posts, group, group.getName(), new AdapterWall.LoadClick() {
             @Override
             public void getOldpost() {
                 getPost(posts.size() + 100);

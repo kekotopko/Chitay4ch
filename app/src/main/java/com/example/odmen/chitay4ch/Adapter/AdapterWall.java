@@ -26,13 +26,16 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private List<Post> posts;
     private Group group;
     private LoadClick loadClick;
+    private String name;
 
 
-    public AdapterWall(List<Post> posts, Group group, LoadClick loadClick) {
+    public AdapterWall(List<Post> posts, Group group, String name, LoadClick loadClick) {
         this.posts = posts;
         this.group = group;
         this.loadClick = loadClick;
+        this.name = name;
     }
+
 
     public interface LoadClick {
         void getOldpost();
@@ -64,11 +67,17 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             long date = posts.get(position).getDate() * 1000;
             Date date1 = new Date(date);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            holder.name.setText(posts.get(position).getText());
+            if (posts.get(position).getText() == null) {
+                holder.name.setVisibility(View.GONE);
+            } else {
+                holder.name.setText(posts.get(position).getText());
+                holder.name.setVisibility(View.VISIBLE);
+            }
             Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
             holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
             holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
             holder.adapterHorizontalPhoto.setRowIndex(position);
+            holder.textname.setText(name);
             if (posts.get(position).getlistphoto().isEmpty()) {
                 holder.horizontallist.setVisibility(View.GONE);
             } else {
@@ -84,7 +93,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, textdate;
+        public TextView name, textdate, textname;
         public ImageView image, imageBtn;
         private AdapterHorizontalPhoto adapterHorizontalPhoto;
         RecyclerView horizontallist;
@@ -95,6 +104,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             name = (TextView) itemView.findViewById(R.id.text);
             textdate = (TextView) itemView.findViewById(R.id.textdate);
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
+            textname = (TextView) itemView.findViewById(R.id.textname);
             imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
 
 

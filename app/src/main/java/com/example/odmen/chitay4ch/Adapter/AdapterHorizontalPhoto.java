@@ -1,6 +1,9 @@
 package com.example.odmen.chitay4ch.Adapter;
 
+import android.app.Activity;
+import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+
 /**
  * Created by odmen on 25.10.2017.
  */
@@ -24,6 +29,7 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
 
     List<Photo> photos = new ArrayList<>();
     private int mRowIndex = -1;
+    String photo;
 
 
     public AdapterHorizontalPhoto() {
@@ -50,12 +56,37 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        double prop = photos.get(position).getWidth() / photos.get(position).getHeight();
-        float params = holder.imagePhoto.getContext().getResources().getDisplayMetrics().density;
-        holder.imagePhoto.setLayoutParams(new LinearLayout.LayoutParams((int) (photos.get(position).getHeight() * prop), (int) (photos.get(position).getHeight() * prop)));
-        Picasso.with(holder.itemView.getContext()).load(photos.get(position).getPhoto()).into(holder.imagePhoto);
+        Activity activity = (Activity) holder.itemView.getContext();
+        ViewGroup.LayoutParams layoutParams = holder.imagePhoto.getLayoutParams();
+        float prop = (float) photos.get(position).getWidth() / (float) photos.get(position).getHeight();
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int widthScr = size.x;
+        if (photos.size() == 1) {
+            layoutParams.width = widthScr;
+            layoutParams.height = (int) ((float) widthScr / prop);
+        } else {
 
+
+            //float params = holder.imagePhoto.getContext().getResources().getDisplayMetrics().density;
+            int height = holder.imagePhoto.getLayoutParams().height;
+
+            layoutParams.width = (int) (prop * height);
+
+        }
+        holder.imagePhoto.setLayoutParams(layoutParams);
+        if (photos.get(position).getPhoto604() != null) {
+            photo = photos.get(position).getPhoto604();
+        } else if (photos.get(position).getPhoto604() == null) {
+            photo = photos.get(position).getPhoto130();
+        } else {
+            photo = photos.get(position).getPhoto75();
+        }
+
+        Picasso.with(holder.itemView.getContext()).load(photo).into(holder.imagePhoto);
     }
+
 
     @Override
     public int getItemCount() {
@@ -71,4 +102,6 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
 
         }
     }
+
+
 }
