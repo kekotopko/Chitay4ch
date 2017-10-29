@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#60b0b0b0"
     android:orientation="vertical">
 
     <LinearLayout
@@ -63,12 +64,12 @@
                     android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/imageAvatar"
                     android:layout_alignStart="@+id/imageAvatar"
+                    android:layout_below="@+id/imageAvatar"
                     android:layout_margin="2dp"
                     android:text="text"
-                    android:layout_below="@+id/imageAvatar"
-                    android:visibility="gone"
-                    android:layout_alignLeft="@+id/imageAvatar" />
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
