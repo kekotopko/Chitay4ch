@@ -8,11 +8,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/liner"
             android:layout_width="match_parent"
-            android:layout_margin="3dp"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:background="@drawable/editeextstyle"
             android:orientation="horizontal"
             android:padding="2dp">
@@ -21,18 +22,22 @@
                 android:id="@+id/editname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Ведите id паблика для добавления"
                 android:layout_weight="15"
-                android:text="" />
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:padding="9dp"
+                android:background="@null"
+                android:hint="@string/editTestIdPublic"
+                android:textColorLink="#000000" />
 
             <ImageView
-
                 android:id="@+id/imagePoisk"
                 android:layout_width="43dp"
                 android:layout_height="41dp"
                 android:layout_gravity="right"
                 android:clickable="true"
-                app:srcCompat="@drawable/check" />
+                android:focusable="true"
+                app:srcCompat="@drawable/checked" />
 
         </LinearLayout>
 
@@ -43,17 +48,6 @@
             android:layout_below="@+id/liner">
 
         </android.support.v7.widget.RecyclerView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/imageSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/plus" />
 
     </RelativeLayout>
 </LinearLayout>

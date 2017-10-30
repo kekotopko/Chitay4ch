@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Chitay4ch</string>
+    <string name="editTestIdPublic">Введите id паблика</string>
 </resources>

@@ -67,11 +67,11 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             long date = posts.get(position).getDate() * 1000;
             Date date1 = new Date(date);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            if (posts.get(position).getText() == null) {
-                holder.name.setVisibility(View.GONE);
+            if (posts.get(position).getText().length() < 1) {
+                holder.textWall.setVisibility(View.GONE);
             } else {
-                holder.name.setText(posts.get(position).getText());
-                holder.name.setVisibility(View.VISIBLE);
+                holder.textWall.setText(posts.get(position).getText());
+                holder.textWall.setVisibility(View.VISIBLE);
             }
             Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
             holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
@@ -93,7 +93,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, textdate, textname;
+        public TextView textWall, textdate, textname;
         public ImageView image, imageBtn;
         private AdapterHorizontalPhoto adapterHorizontalPhoto;
         RecyclerView horizontallist;
@@ -101,7 +101,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.text);
+            textWall = (TextView) itemView.findViewById(R.id.text);
             textdate = (TextView) itemView.findViewById(R.id.textdate);
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
             textname = (TextView) itemView.findViewById(R.id.textname);

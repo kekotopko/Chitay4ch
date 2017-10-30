@@ -16,6 +16,6 @@
             android:layout_marginLeft="151dp"
             android:layout_marginStart="151dp"
             android:clickable="true"
-            app:srcCompat="@android:drawable/presence_busy" />
+            app:srcCompat="@drawable/down" />
     </RelativeLayout>
 </LinearLayout>
