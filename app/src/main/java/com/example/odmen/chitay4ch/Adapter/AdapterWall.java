@@ -75,13 +75,36 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             }
             Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
             holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
+
             holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
             holder.adapterHorizontalPhoto.setRowIndex(position);
+
+            holder.adapterAudio.setData(posts.get(position).getlistaudio());
+            holder.adapterAudio.setRowIndex(position);
+
+            holder.horizontalVideo.setData(posts.get(position).getlistvideo());
+            holder.horizontalVideo.setRowIndex(position);
+
             holder.textname.setText(name);
             if (posts.get(position).getlistphoto().isEmpty()) {
                 holder.horizontallist.setVisibility(View.GONE);
             } else {
                 holder.horizontallist.setVisibility(View.VISIBLE);
+            }
+
+
+            if (posts.get(position).getlistaudio().isEmpty()) {
+                holder.audiolist.setVisibility(View.GONE);
+            } else {
+                holder.audiolist.setVisibility(View.VISIBLE);
+            }
+
+            if (posts.get(position).getlistvideo().isEmpty()) {
+                holder.videolist.setVisibility(View.GONE);
+
+            } else {
+                holder.videolist.setVisibility(View.VISIBLE);
+
             }
         }
 
@@ -96,7 +119,9 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         public TextView textWall, textdate, textname;
         public ImageView image, imageBtn;
         private AdapterHorizontalPhoto adapterHorizontalPhoto;
-        RecyclerView horizontallist;
+        RecyclerView horizontallist, audiolist,videolist;
+        private AdapterAudio adapterAudio;
+        private AdapterHorizontalVideo horizontalVideo;
 
 
         public ViewHolder(View itemView) {
@@ -114,6 +139,20 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                 horizontallist.setLayoutManager(layoutManager);
                 adapterHorizontalPhoto = new AdapterHorizontalPhoto();
                 horizontallist.setAdapter(adapterHorizontalPhoto);
+            }
+            audiolist = (RecyclerView) itemView.findViewById(R.id.listaudio);
+            if (audiolist != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+                audiolist.setLayoutManager(layoutManager);
+                adapterAudio = new AdapterAudio();
+                audiolist.setAdapter(adapterAudio);
+            }
+            videolist = (RecyclerView) itemView.findViewById(R.id.listvideo);
+            if (videolist != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+                videolist.setLayoutManager(layoutManager);
+                horizontalVideo = new AdapterHorizontalVideo();
+                videolist.setAdapter(horizontalVideo);
             }
         }
 

@@ -68,10 +68,8 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
             layoutParams.height = (int) ((float) widthScr / prop);
         } else {
 
-
             //float params = holder.imagePhoto.getContext().getResources().getDisplayMetrics().density;
             int height = holder.imagePhoto.getLayoutParams().height;
-
             layoutParams.width = (int) (prop * height);
 
         }

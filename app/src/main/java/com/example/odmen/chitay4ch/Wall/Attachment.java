@@ -11,6 +11,10 @@ public class Attachment {
     String type;
     @SerializedName("photo")
     Photo photo;
+    @SerializedName("audio")
+    Audio audio;
+    @SerializedName("video")
+    Video video;
 
 
     public String getType() {
@@ -19,5 +23,13 @@ public class Attachment {
 
     public Photo getPhoto() {
         return photo;
+    }
+
+    public Audio getAudio() {
+        return audio;
+    }
+
+    public Video getVideo() {
+        return video;
     }
 }
