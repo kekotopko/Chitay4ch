@@ -85,6 +85,7 @@
                 android:id="@+id/listvideo"
                 android:layout_below="@+id/listPhoto"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
 
@@ -97,117 +98,15 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_below="@+id/listaudio"
-                android:visibility="gone"
-                android:id="@+id/repost"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/repitemwall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true">
-
-                    <RelativeLayout
-                        android:id="@+id/repconteiner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:padding="4dp">
-
-                        <RelativeLayout
-                            android:id="@+id/reptitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="0.5dp">
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/repimageAvatar"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentTop="true"
-                                android:layout_margin="2dp"
-                                android:layout_marginLeft="13dp"
-                                android:layout_marginStart="13dp"
-                                app:srcCompat="@mipmap/ic_launcher" />
-
-                            <TextView
-                                android:id="@+id/reptextname"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/repimageAvatar"
-                                android:layout_below="@+id/reptextdate"
-                                android:layout_marginLeft="2dp"
-                                android:layout_toEndOf="@+id/repimageAvatar"
-                                android:layout_toRightOf="@+id/repimageAvatar"
-                                android:text="text"
-                                android:textColor="#000000"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/reptextdate"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_margin="4dp"
-                                android:text="date" />
-
-                            <TextView
-                                android:id="@+id/reptext"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignLeft="@+id/repimageAvatar"
-                                android:layout_alignStart="@+id/repimageAvatar"
-                                android:layout_below="@+id/repimageAvatar"
-                                android:layout_margin="2dp"
-                                android:text="text"
-                                android:textColor="#000000"
-                                android:visibility="gone" />
-
-                        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/copyhistory"
+                android:layout_below="@id/listaudio"
+                android:orientation="vertical">
+            </LinearLayout>
 
 
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/replistPhoto"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/reptitle">
-
-                        </android.support.v7.widget.RecyclerView>
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/replistvideo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/replistPhoto"
-                            android:visibility="gone">
-
-                        </android.support.v7.widget.RecyclerView>
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/replistaudio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/replistvideo"
-                            android:visibility="gone">
-
-                        </android.support.v7.widget.RecyclerView>
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/listrepost"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/replistaudio">
-
-                        </android.support.v7.widget.RecyclerView>
-
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
 
         </RelativeLayout>
     </LinearLayout>

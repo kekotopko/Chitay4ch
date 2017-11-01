@@ -3,6 +3,7 @@ package com.example.odmen.chitay4ch.Adapter;
 import android.app.Activity;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,7 @@ public class AdapterHorizontalVideo extends RecyclerView.Adapter<AdapterHorizont
         } else {
             photo = videos.get(position).getPhoto_130();
         }
+        Log.e("lukas",photo);
         holder.playideo.setVisibility(View.VISIBLE);
         Picasso.with(holder.itemView.getContext()).load(photo).into(holder.imageVideo);
     }
