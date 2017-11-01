@@ -106,6 +106,54 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                 holder.videolist.setVisibility(View.VISIBLE);
 
             }
+
+            List<Post>repost=posts.get(position).getReposts();
+            if(repost!=null){
+                long repDate = posts.get(position).getDate() * 1000;
+                Date repDate1 = new Date(repDate);
+                DateFormat repDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                if (repost.get(position).getText().length() < 1) {
+                    holder.reptextWall.setVisibility(View.GONE);
+                } else {
+                    holder.reptextWall.setText(repost.get(position).getText());
+                    holder.reptextWall.setVisibility(View.VISIBLE);
+                }
+                Picasso.with(holder.repimage.getContext()).load(group.getPhoto_50()).into(holder.image);
+                holder.reptextdate.setText(String.valueOf(repDateFormat.format(repDate1)));
+
+                holder.adapterHorizontalPhoto.setData(repost.get(position).getlistphoto());
+                holder.adapterHorizontalPhoto.setRowIndex(position);
+
+                holder.adapterAudio.setData(repost.get(position).getlistaudio());
+                holder.adapterAudio.setRowIndex(position);
+
+                holder.horizontalVideo.setData(repost.get(position).getlistvideo());
+                holder.horizontalVideo.setRowIndex(position);
+
+                holder.reptextname.setText(name);
+                if (repost.get(position).getlistphoto().isEmpty()) {
+                    holder.rephorizontallist.setVisibility(View.GONE);
+                } else {
+                    holder.rephorizontallist.setVisibility(View.VISIBLE);
+                }
+
+
+                if (repost.get(position).getlistaudio().isEmpty()) {
+                    holder.repaudiolist.setVisibility(View.GONE);
+                } else {
+                    holder.repaudiolist.setVisibility(View.VISIBLE);
+                }
+
+                if (repost.get(position).getlistvideo().isEmpty()) {
+                    holder.repvideolist.setVisibility(View.GONE);
+
+                } else {
+                    holder.repvideolist.setVisibility(View.VISIBLE);
+
+                }
+
+
+            }
         }
 
     }
@@ -116,10 +164,10 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textWall, textdate, textname;
-        public ImageView image, imageBtn;
+        public TextView textWall, textdate, textname, reptextWall, reptextdate, reptextname;
+        public ImageView image, imageBtn, repimage;
         private AdapterHorizontalPhoto adapterHorizontalPhoto;
-        RecyclerView horizontallist, audiolist,videolist;
+        RecyclerView horizontallist, audiolist, videolist, rephorizontallist, repaudiolist, repvideolist;
         private AdapterAudio adapterAudio;
         private AdapterHorizontalVideo horizontalVideo;
 
@@ -131,6 +179,12 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
             textname = (TextView) itemView.findViewById(R.id.textname);
             imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
+
+            reptextWall = (TextView) itemView.findViewById(R.id.reptext);
+            reptextname = (TextView) itemView.findViewById(R.id.reptitle);
+            reptextdate = (TextView) itemView.findViewById(R.id.reptextdate);
+            repimage = (ImageView) itemView.findViewById(R.id.repimageAvatar);
+            repaudiolist = (RecyclerView) itemView.findViewById(R.id.replistaudio);
 
 
             horizontallist = (RecyclerView) itemView.findViewById(R.id.listPhoto);
@@ -153,6 +207,29 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                 videolist.setLayoutManager(layoutManager);
                 horizontalVideo = new AdapterHorizontalVideo();
                 videolist.setAdapter(horizontalVideo);
+            }
+
+
+            rephorizontallist = (RecyclerView) itemView.findViewById(R.id.replistPhoto);
+            if (rephorizontallist != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+                rephorizontallist.setLayoutManager(layoutManager);
+                adapterHorizontalPhoto = new AdapterHorizontalPhoto();
+                rephorizontallist.setAdapter(adapterHorizontalPhoto);
+            }
+            repaudiolist = (RecyclerView) itemView.findViewById(R.id.replistaudio);
+            if (repaudiolist != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+                repaudiolist.setLayoutManager(layoutManager);
+                adapterAudio = new AdapterAudio();
+                repaudiolist.setAdapter(adapterAudio);
+            }
+            repvideolist = (RecyclerView) itemView.findViewById(R.id.replistvideo);
+            if (repvideolist != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+                repvideolist.setLayoutManager(layoutManager);
+                horizontalVideo = new AdapterHorizontalVideo();
+                repvideolist.setAdapter(horizontalVideo);
             }
         }
 

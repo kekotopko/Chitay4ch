@@ -23,6 +23,8 @@ public class Post {
     String text;
     @SerializedName("attachments")
     List<Attachment> attachmentseslist;
+    @SerializedName("copy_history")
+    List<Post> reposts;
 
     public long getDate() {
         return date;
@@ -32,6 +34,9 @@ public class Post {
         return text;
     }
 
+    public List<Post> getReposts() {
+        return reposts;
+    }
 
     public List<Photo> getlistphoto() {
         List<Photo> photos = new ArrayList<>();

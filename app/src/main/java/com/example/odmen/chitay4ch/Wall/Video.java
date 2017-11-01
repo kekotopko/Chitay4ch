@@ -39,10 +39,16 @@ public class Video {
     }
 
     public int getWidth() {
+        if(width==0){
+            width=1280;
+        }
         return width;
     }
 
     public int getHeight() {
+        if(height==0){
+            height=720;
+        }
         return height;
     }
 

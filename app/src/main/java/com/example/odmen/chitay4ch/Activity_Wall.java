@@ -1,16 +1,10 @@
 package com.example.odmen.chitay4ch;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,7 +13,6 @@ import com.example.odmen.chitay4ch.Adapter.AdapterWall;
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.Wall.Data;
 import com.example.odmen.chitay4ch.Wall.Post;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +39,7 @@ public class Activity_Wall extends AppCompatActivity {
         Group group = getIntent().getParcelableExtra("group");
         id = group.getId();
         photo = group.getPhoto_50();
-        imageView = (ImageView) findViewById(R.id.imageAvatar);
+        imageView = (ImageView) findViewById(R.id.repimageAvatar);
         setContentView(R.layout.listwall);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerwall);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
