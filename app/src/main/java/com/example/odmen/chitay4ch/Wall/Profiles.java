@@ -9,8 +9,10 @@ import com.google.gson.annotations.SerializedName;
 public class Profiles {
     @SerializedName("id")
     long id;
-    @SerializedName("name")
-    String name;
+    @SerializedName("first_name")
+    String first_name;
+    @SerializedName("last_name")
+    String last_name;
     @SerializedName("photo_200")
     String photo_200;
     @SerializedName("photo_50")
@@ -23,7 +25,7 @@ public class Profiles {
     }
 
     public String getName() {
-        return name;
+        return first_name+" "+last_name;
     }
 
     public String getPhoto_200() {

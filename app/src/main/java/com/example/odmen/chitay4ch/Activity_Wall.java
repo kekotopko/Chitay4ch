@@ -58,7 +58,7 @@ public class Activity_Wall extends AppCompatActivity {
     }
 
     public void getPost(final int count) {
-        App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", id * (-1), 100, count).enqueue(new Callback<Data>() {
+        App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", 1,id * (-1), 100, count).enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 posts.addAll(response.body().response.items);

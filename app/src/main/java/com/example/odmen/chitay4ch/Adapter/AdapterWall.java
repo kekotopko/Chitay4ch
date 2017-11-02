@@ -31,15 +31,15 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private Group group;
     private LoadClick loadClick;
     private String name;
-    private List<Profiles>profilesList;
+    private List<Profiles> profilesList;
 
 
-    public AdapterWall(List<Post> posts,List<Profiles>profilesList, Group group, String name, LoadClick loadClick) {
+    public AdapterWall(List<Post> posts, List<Profiles> profilesList, Group group, String name, LoadClick loadClick) {
         this.posts = posts;
         this.group = group;
         this.loadClick = loadClick;
         this.name = name;
-        this.profilesList=profilesList;
+        this.profilesList = profilesList;
     }
 
 
@@ -151,9 +151,9 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         String repname = null;
         for (int i = 0; i < profilesList.size(); i++) {
             Profiles profiles = profilesList.get(i);
+
             if (post.getOwner_id() == profiles.getId()) {
                 if (profiles.getPhoto_200() != null) {
-
                     image = profiles.getPhoto_200();
                 } else if (profiles.getPhoto_100() != null) {
                     image = profiles.getPhoto_100();
@@ -161,10 +161,10 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                     image = profiles.getPhoto_50();
                 }
                 repname = profiles.getName();
-
             }
 
         }
+
         Picasso.with(holder.repimage.getContext()).load(image).into(holder.repimage);
         holder.reptextname.setText(repname);
 
