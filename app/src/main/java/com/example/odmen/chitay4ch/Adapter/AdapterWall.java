@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
 import com.example.odmen.chitay4ch.Wall.Post;
+import com.example.odmen.chitay4ch.Wall.Profiles;
+import com.example.odmen.chitay4ch.Wall.Response;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -29,13 +31,15 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private Group group;
     private LoadClick loadClick;
     private String name;
+    private List<Profiles>profilesList;
 
 
-    public AdapterWall(List<Post> posts, Group group, String name, LoadClick loadClick) {
+    public AdapterWall(List<Post> posts,List<Profiles>profilesList, Group group, String name, LoadClick loadClick) {
         this.posts = posts;
         this.group = group;
         this.loadClick = loadClick;
         this.name = name;
+        this.profilesList=profilesList;
     }
 
 
@@ -133,6 +137,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
 
     public void onBindViewHolder(RepostHolder holder, Post post) {
+
         long date = post.getDate() * 1000;
         Date date1 = new Date(date);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -142,7 +147,28 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.reptextWall.setText(post.getText());
             holder.reptextWall.setVisibility(View.VISIBLE);
         }
-        Picasso.with(holder.repimage.getContext()).load(group.getPhoto_50()).into(holder.repimage);
+        String image = null;
+        String repname = null;
+        for (int i = 0; i < profilesList.size(); i++) {
+            Profiles profiles = profilesList.get(i);
+            if (post.getOwner_id() == profiles.getId()) {
+                if (profiles.getPhoto_200() != null) {
+
+                    image = profiles.getPhoto_200();
+                } else if (profiles.getPhoto_100() != null) {
+                    image = profiles.getPhoto_100();
+                } else {
+                    image = profiles.getPhoto_50();
+                }
+                repname = profiles.getName();
+
+            }
+
+        }
+        Picasso.with(holder.repimage.getContext()).load(image).into(holder.repimage);
+        holder.reptextname.setText(repname);
+
+
         holder.reptextdate.setText(String.valueOf(dateFormat.format(date1)));
 
         holder.adapterHorizontalPhoto.setData(post.getlistphoto());
@@ -154,7 +180,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         holder.horizontalVideo.setData(post.getlistvideo());
         //holder.horizontalVideo.setRowIndex(position);
 
-        holder.reptextname.setText(name);
+
         if (post.getlistphoto().isEmpty()) {
             holder.rephorizontallist.setVisibility(View.GONE);
         } else {

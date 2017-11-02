@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.odmen.chitay4ch.Adapter.AdapterRecyclerPublic;
 import com.example.odmen.chitay4ch.Groups.Data;
 import com.example.odmen.chitay4ch.Groups.Group;
+import com.example.odmen.chitay4ch.Wall.Profiles;
 
 import java.util.ArrayList;
 import java.util.List;

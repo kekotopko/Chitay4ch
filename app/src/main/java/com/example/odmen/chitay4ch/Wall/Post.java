@@ -1,5 +1,6 @@
 package com.example.odmen.chitay4ch.Wall;
 
+import com.example.odmen.chitay4ch.Groups.Group;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -25,6 +26,11 @@ public class Post {
     List<Attachment> attachmentseslist;
     @SerializedName("copy_history")
     List<Post> reposts;
+
+
+    public long getOwner_id() {
+        return owner_id;
+    }
 
     public long getDate() {
         return date;
@@ -76,6 +82,8 @@ public class Post {
         }
         return videos;
     }
+
+
 
 
 }

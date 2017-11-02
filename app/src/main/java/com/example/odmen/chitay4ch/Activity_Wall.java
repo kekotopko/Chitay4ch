@@ -13,6 +13,7 @@ import com.example.odmen.chitay4ch.Adapter.AdapterWall;
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.Wall.Data;
 import com.example.odmen.chitay4ch.Wall.Post;
+import com.example.odmen.chitay4ch.Wall.Profiles;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class Activity_Wall extends AppCompatActivity {
     private AdapterWall adapterWall;
     String photo;
     List<Post> posts = new ArrayList<>();
+    List<Profiles> profilesList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class Activity_Wall extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         getPost(0);
 
-        adapterWall = new AdapterWall(posts, group, group.getName(), new AdapterWall.LoadClick() {
+        adapterWall = new AdapterWall(posts, profilesList, group, group.getName(), new AdapterWall.LoadClick() {
             @Override
             public void getOldpost() {
                 getPost(posts.size() + 100);
@@ -60,6 +62,7 @@ public class Activity_Wall extends AppCompatActivity {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 posts.addAll(response.body().response.items);
+                profilesList.addAll(response.body().response.profiles);
                 adapterWall.notifyDataSetChanged();
             }
 

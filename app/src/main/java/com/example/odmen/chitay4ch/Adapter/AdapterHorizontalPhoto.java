@@ -76,7 +76,7 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
         holder.imagePhoto.setLayoutParams(layoutParams);
         if (photos.get(position).getPhoto604() != null) {
             photo = photos.get(position).getPhoto604();
-        } else if (photos.get(position).getPhoto604() == null) {
+        } else if (photos.get(position).getPhoto130() != null) {
             photo = photos.get(position).getPhoto130();
         } else {
             photo = photos.get(position).getPhoto75();
