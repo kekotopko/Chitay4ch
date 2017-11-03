@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.odmen.chitay4ch.Adapter.AdapterWall;
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.Wall.Data;
+import com.example.odmen.chitay4ch.Wall.Groups;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.example.odmen.chitay4ch.Wall.Profiles;
 
@@ -34,11 +35,13 @@ public class Activity_Wall extends AppCompatActivity {
     String photo;
     List<Post> posts = new ArrayList<>();
     List<Profiles> profilesList = new ArrayList<>();
+    List<Groups>groupsList=new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Group group = getIntent().getParcelableExtra("group");
+        setTitle(group.getName());
         id = group.getId();
         photo = group.getPhoto_50();
         imageView = (ImageView) findViewById(R.id.repimageAvatar);
@@ -48,7 +51,7 @@ public class Activity_Wall extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         getPost(0);
 
-        adapterWall = new AdapterWall(posts, profilesList, group, group.getName(), new AdapterWall.LoadClick() {
+        adapterWall = new AdapterWall(posts, profilesList,groupsList, group, group.getName(), new AdapterWall.LoadClick() {
             @Override
             public void getOldpost() {
                 getPost(posts.size() + 100);
@@ -58,11 +61,12 @@ public class Activity_Wall extends AppCompatActivity {
     }
 
     public void getPost(final int count) {
-        App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", 1,id * (-1), 100, count).enqueue(new Callback<Data>() {
+        App.getVkGroupApi().getPost("337f50dc337f50dc331206c107333365d03337f337f50dc6ba8b16e4679ff22002b5775", "5.54", 1, id * (-1), 100, count).enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, Response<Data> response) {
                 posts.addAll(response.body().response.items);
                 profilesList.addAll(response.body().response.profiles);
+                groupsList.addAll(response.body().response.groups);
                 adapterWall.notifyDataSetChanged();
             }
 

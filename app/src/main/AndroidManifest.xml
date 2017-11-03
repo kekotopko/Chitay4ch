@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity_Wall">
-
         </activity>
     </application>
 

@@ -2,6 +2,7 @@ package com.example.odmen.chitay4ch.Adapter;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
+import com.example.odmen.chitay4ch.Wall.Groups;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.example.odmen.chitay4ch.Wall.Profiles;
 import com.example.odmen.chitay4ch.Wall.Response;
@@ -21,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by odmen on 20.10.2017.
@@ -32,14 +35,16 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private LoadClick loadClick;
     private String name;
     private List<Profiles> profilesList;
+    private List<Groups> groupsList;
 
 
-    public AdapterWall(List<Post> posts, List<Profiles> profilesList, Group group, String name, LoadClick loadClick) {
+    public AdapterWall(List<Post> posts, List<Profiles> profilesList, List<Groups> groupsList, Group group, String name, LoadClick loadClick) {
         this.posts = posts;
         this.group = group;
         this.loadClick = loadClick;
         this.name = name;
         this.profilesList = profilesList;
+        this.groupsList = groupsList;
     }
 
 
@@ -73,7 +78,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             Post post = posts.get(position);
             long date = posts.get(position).getDate() * 1000;
             Date date1 = new Date(date);
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy  HH:mm", Locale.ENGLISH);
             if (posts.get(position).getText().length() < 1) {
                 holder.textWall.setVisibility(View.GONE);
             } else {
@@ -81,7 +86,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                 holder.textWall.setVisibility(View.VISIBLE);
             }
             Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
-            holder.textdate.setText(String.valueOf(dateFormat.format(date1)));
+            holder.textdate.setText(String.valueOf(dateFormat.format(date1).toLowerCase()));
 
             holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());
             holder.adapterHorizontalPhoto.setRowIndex(position);
@@ -140,7 +145,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
         long date = post.getDate() * 1000;
         Date date1 = new Date(date);
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy  HH:mm", Locale.ENGLISH);
         if (post.getText().length() < 1) {
             holder.reptextWall.setVisibility(View.GONE);
         } else {
@@ -165,11 +170,29 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
         }
 
+        for (int i = 0; i < groupsList.size(); i++) {
+            Groups groups = groupsList.get(i);
+            Log.d("lestok", groupsList.get(i).getName());
+
+            if (post.getOwner_id() == groups.getId() * (-1)) {
+                if (groups.getPhoto_200() != null) {
+                    image = groups.getPhoto_200();
+                } else if (groups.getPhoto_100() != null) {
+                    image = groups.getPhoto_100();
+                } else {
+                    image = groups.getPhoto_50();
+                }
+                repname = groups.getName();
+            }
+
+        }
+
+
         Picasso.with(holder.repimage.getContext()).load(image).into(holder.repimage);
         holder.reptextname.setText(repname);
 
 
-        holder.reptextdate.setText(String.valueOf(dateFormat.format(date1)));
+        holder.reptextdate.setText(String.valueOf(dateFormat.format(date1).toLowerCase()));
 
         holder.adapterHorizontalPhoto.setData(post.getlistphoto());
         //holder.adapterHorizontalPhoto.setRowIndex(position);

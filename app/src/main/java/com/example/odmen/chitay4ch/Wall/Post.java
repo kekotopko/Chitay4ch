@@ -36,6 +36,10 @@ public class Post {
         return date;
     }
 
+    public long getFrom_id() {
+        return from_id;
+    }
+
     public String getText() {
         return text;
     }

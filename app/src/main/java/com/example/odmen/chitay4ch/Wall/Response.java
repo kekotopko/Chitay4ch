@@ -15,6 +15,8 @@ public class Response {
 
     @SerializedName("profiles")
     public List<Profiles> profiles;
+    @SerializedName("groups")
+    public List<Groups> groups;
 
 
 

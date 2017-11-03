@@ -2,14 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/editeextstyle2"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="18dp"
-        app:srcCompat="@drawable/arrowrepost" />
+
 
     <LinearLayout
         android:id="@+id/repitemwall"
@@ -17,9 +13,12 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/arrow"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="4dp">
+        android:layout_marginLeft="2dp">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#45688E" />
 
 
         <RelativeLayout
@@ -36,8 +35,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/repimageAvatar"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
@@ -80,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/reptitle"
                 android:layout_marginTop="2dp"
-                android:layout_marginLeft="16dp"
+
                 android:text="text"
                 android:textColor="#000000" />
 
