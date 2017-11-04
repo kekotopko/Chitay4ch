@@ -3,6 +3,7 @@ package com.example.odmen.chitay4ch.Adapter;
 import android.app.Activity;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.example.odmen.chitay4ch.R;
 import com.example.odmen.chitay4ch.Wall.Attachment;
+import com.example.odmen.chitay4ch.Wall.Doc;
 import com.example.odmen.chitay4ch.Wall.Photo;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +28,6 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
  */
 
 public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizontalPhoto.ViewHolder> {
-
     List<Photo> photos = new ArrayList<>();
     private int mRowIndex = -1;
     String photo;
@@ -37,9 +38,12 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
     }
 
     public void setData(List<Photo> data) {
-        photos.clear();
-        photos.addAll(data);
+        if(data!=null) {
+            photos.clear();
+            photos.addAll(data);
+        }
         notifyDataSetChanged();
+
     }
 
     public void setRowIndex(int index) {

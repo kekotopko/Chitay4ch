@@ -15,6 +15,8 @@ public class Attachment {
     Audio audio;
     @SerializedName("video")
     Video video;
+    @SerializedName("doc")
+    Doc doc;
 
 
     public String getType() {
@@ -31,5 +33,9 @@ public class Attachment {
 
     public Video getVideo() {
         return video;
+    }
+
+    public Doc getDoc() {
+        return doc;
     }
 }

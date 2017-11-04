@@ -21,6 +21,9 @@
         </activity>
         <activity android:name=".Activity_Wall">
         </activity>
+        <activity android:name=".ActivityGif">
+
+        </activity>
     </application>
 
 </manifest>

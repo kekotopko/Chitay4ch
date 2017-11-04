@@ -87,6 +87,19 @@ public class Post {
         return videos;
     }
 
+    public List<Doc> getdocList() {
+        List<Doc> docs = new ArrayList<>();
+        if (attachmentseslist != null) {
+            for (int i = 0; i < attachmentseslist.size(); i++) {
+                Attachment attachment = attachmentseslist.get(i);
+                if (attachment.getType().equals("doc")) {
+                    docs.add(attachment.getDoc());
+                }
+            }
+        }
+        return docs;
+    }
+
 
 
 

@@ -16,6 +16,7 @@ import com.example.odmen.chitay4ch.Wall.Groups;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.example.odmen.chitay4ch.Wall.Profiles;
 import com.example.odmen.chitay4ch.Wall.Response;
+import com.felipecsl.gifimageview.library.GifImageView;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -36,7 +37,11 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private String name;
     private List<Profiles> profilesList;
     private List<Groups> groupsList;
+    private AdapterGif.ClickGif clickGif;
 
+    public void setClickGif(AdapterGif.ClickGif clickGif) {
+        this.clickGif = clickGif;
+    }
 
     public AdapterWall(List<Post> posts, List<Profiles> profilesList, List<Groups> groupsList, Group group, String name, LoadClick loadClick) {
         this.posts = posts;
@@ -97,6 +102,12 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.horizontalVideo.setData(posts.get(position).getlistvideo());
             holder.horizontalVideo.setRowIndex(position);
 
+
+
+            holder.adapterGif.setData(posts.get(position).getdocList());
+            holder.adapterGif.setClickGif(clickGif);
+
+
             holder.textname.setText(name);
             if (posts.get(position).getlistphoto().isEmpty()) {
                 holder.horizontallist.setVisibility(View.GONE);
@@ -116,6 +127,12 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
             } else {
                 holder.videolist.setVisibility(View.VISIBLE);
+            }
+
+            if (posts.get(position).getdocList().isEmpty()) {
+                holder.listgif.setVisibility(View.GONE);
+            } else {
+                holder.listgif.setVisibility(View.VISIBLE);
             }
             LayoutInflater layoutInflater = LayoutInflater.from(holder.itemView.getContext());
             List<Post> repost = post.getReposts() == null ? new ArrayList<Post>() : post.getReposts();
@@ -235,10 +252,11 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         public TextView textWall, textdate, textname;
         public ImageView image, imageBtn;
 
-        RecyclerView horizontallist, audiolist, videolist;
+        RecyclerView horizontallist, audiolist, videolist, listgif;
         private AdapterAudio adapterAudio;
         private AdapterHorizontalPhoto adapterHorizontalPhoto;
         private AdapterHorizontalVideo horizontalVideo;
+        private AdapterGif adapterGif;
         LinearLayout copyhistory;
 
 
@@ -247,6 +265,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             textWall = (TextView) itemView.findViewById(R.id.text);
             textdate = (TextView) itemView.findViewById(R.id.textdate);
             image = (ImageView) itemView.findViewById(R.id.imageAvatar);
+
             textname = (TextView) itemView.findViewById(R.id.textname);
             imageBtn = (ImageView) itemView.findViewById(R.id.imagebtnLoad);
             copyhistory = (LinearLayout) itemView.findViewById(R.id.copyhistory);
@@ -272,6 +291,14 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                 videolist.setLayoutManager(layoutManager);
                 horizontalVideo = new AdapterHorizontalVideo();
                 videolist.setAdapter(horizontalVideo);
+            }
+
+            listgif = (RecyclerView) itemView.findViewById(R.id.listgif);
+            if (listgif != null) {
+                LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.VERTICAL, false);
+                listgif.setLayoutManager(layoutManager);
+                adapterGif=new AdapterGif();
+                listgif.setAdapter(adapterGif);
             }
 
 
@@ -324,6 +351,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
         }
     }
+
 
     @Override
     public int getItemViewType(int position) {

@@ -1,5 +1,6 @@
 package com.example.odmen.chitay4ch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.example.odmen.chitay4ch.Adapter.AdapterGif;
 import com.example.odmen.chitay4ch.Adapter.AdapterWall;
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.Wall.Data;
+import com.example.odmen.chitay4ch.Wall.Doc;
 import com.example.odmen.chitay4ch.Wall.Groups;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.example.odmen.chitay4ch.Wall.Profiles;
@@ -55,6 +58,14 @@ public class Activity_Wall extends AppCompatActivity {
             @Override
             public void getOldpost() {
                 getPost(posts.size() + 100);
+            }
+        });
+        adapterWall.setClickGif(new AdapterGif.ClickGif() {
+            @Override
+            public void onClick(Doc doc) {
+                Intent intent=new Intent(Activity_Wall.this,ActivityGif.class);
+                intent.putExtra("url",doc.getUrl());
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapterWall);
