@@ -12,6 +12,12 @@ import java.util.List;
 public class Preview {
     @SerializedName("video")
     public GifVideo video;
+    @SerializedName("photo")
+    PhotoGif photoGif;
+
+    public PhotoGif getPhotoGif() {
+        return photoGif;
+    }
 
     public GifVideo getVideo() {
         return video;

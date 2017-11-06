@@ -29,6 +29,7 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activitygif);
         url = getIntent().getStringExtra("url");
         Log.d("gifurl", url);
         gifvideo = (SurfaceView) findViewById(R.id.gifimage);
