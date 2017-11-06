@@ -103,7 +103,6 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.horizontalVideo.setRowIndex(position);
 
 
-
             holder.adapterGif.setData(posts.get(position).getdocList());
             holder.adapterGif.setClickGif(clickGif);
 
@@ -297,7 +296,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             if (listgif != null) {
                 LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.VERTICAL, false);
                 listgif.setLayoutManager(layoutManager);
-                adapterGif=new AdapterGif();
+                adapterGif = new AdapterGif();
                 listgif.setAdapter(adapterGif);
             }
 

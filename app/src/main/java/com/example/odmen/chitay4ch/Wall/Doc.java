@@ -19,6 +19,10 @@ public class Doc {
     @SerializedName("preview")
     Preview preview;
 
+    public Preview getPreview() {
+        return preview;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -30,4 +34,6 @@ public class Doc {
     public int getType() {
         return type;
     }
+
+
 }

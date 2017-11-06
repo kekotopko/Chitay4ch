@@ -15,6 +15,7 @@ import com.example.odmen.chitay4ch.Adapter.AdapterWall;
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.Wall.Data;
 import com.example.odmen.chitay4ch.Wall.Doc;
+import com.example.odmen.chitay4ch.Wall.GifVideo;
 import com.example.odmen.chitay4ch.Wall.Groups;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.example.odmen.chitay4ch.Wall.Profiles;
@@ -64,7 +65,8 @@ public class Activity_Wall extends AppCompatActivity {
             @Override
             public void onClick(Doc doc) {
                 Intent intent=new Intent(Activity_Wall.this,ActivityGif.class);
-                intent.putExtra("url",doc.getUrl());
+                String src=doc.getPreview().getVideo().getSrc();
+                intent.putExtra("url",src);
                 startActivity(intent);
             }
         });

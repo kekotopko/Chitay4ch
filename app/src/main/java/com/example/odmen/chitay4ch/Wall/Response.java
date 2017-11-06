@@ -1,9 +1,6 @@
 package com.example.odmen.chitay4ch.Wall;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
