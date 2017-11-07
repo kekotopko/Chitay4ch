@@ -8,12 +8,8 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.MediaController;
-import android.widget.VideoView;
+import android.widget.ImageView;
 
-import com.example.odmen.chitay4ch.Wall.Video;
-import com.felipecsl.gifimageview.library.GifImageView;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -21,7 +17,7 @@ import java.io.IOException;
  * Created by odmen on 04.11.2017.
  */
 
-public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPreparedListener {
+public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
     SurfaceView gifvideo;
     MediaPlayer mediaPlayer;
     String url;
@@ -31,10 +27,14 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitygif);
         url = getIntent().getStringExtra("url");
+        setTitle(getIntent().getStringExtra("name"));
         Log.d("gifurl", url);
         gifvideo = (SurfaceView) findViewById(R.id.gifimage);
         try {
+
             playVideo(url);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,9 +52,11 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
     public void playVideo(String path) throws IOException {
 
         mediaPlayer = new MediaPlayer();
+
         try {
             mediaPlayer.setDataSource(path);
             mediaPlayer.setOnPreparedListener(this);
+            mediaPlayer.setOnCompletionListener(this);
             mediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,13 +78,20 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
 
             }
         });
-        onPrepared(mediaPlayer);
-
 
     }
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
+        mediaPlayer.start();
+
+
+    }
+
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+        mediaPlayer.seekTo(0);
         mediaPlayer.start();
     }
 }

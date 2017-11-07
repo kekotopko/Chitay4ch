@@ -66,7 +66,9 @@ public class Activity_Wall extends AppCompatActivity {
             public void onClick(Doc doc) {
                 Intent intent=new Intent(Activity_Wall.this,ActivityGif.class);
                 String src=doc.getPreview().getVideo().getSrc();
+                String name=doc.getTitle();
                 intent.putExtra("url",src);
+                intent.putExtra("name",name);
                 startActivity(intent);
             }
         });

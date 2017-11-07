@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
         android:id="@+id/titlegif"
+        android:textColor="#000000"
         android:maxLines="1"
-        android:layout_gravity="center_vertical"
-        android:layout_centerHorizontal="true"/>
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>
