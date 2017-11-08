@@ -1,6 +1,7 @@
 package com.example.odmen.chitay4ch.Wall;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -14,7 +15,6 @@ public class Response {
     public List<Profiles> profiles;
     @SerializedName("groups")
     public List<Groups> groups;
-
 
 
 }

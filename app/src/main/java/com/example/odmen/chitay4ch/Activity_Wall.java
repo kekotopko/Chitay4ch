@@ -39,7 +39,7 @@ public class Activity_Wall extends AppCompatActivity {
     String photo;
     List<Post> posts = new ArrayList<>();
     List<Profiles> profilesList = new ArrayList<>();
-    List<Groups>groupsList=new ArrayList<>();
+    List<Groups> groupsList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class Activity_Wall extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         getPost(0);
 
-        adapterWall = new AdapterWall(posts, profilesList,groupsList, group, group.getName(), new AdapterWall.LoadClick() {
+        adapterWall = new AdapterWall(posts, profilesList, groupsList, group, group.getName(), new AdapterWall.LoadClick() {
             @Override
             public void getOldpost() {
                 getPost(posts.size() + 100);
@@ -64,11 +64,11 @@ public class Activity_Wall extends AppCompatActivity {
         adapterWall.setClickGif(new AdapterGif.ClickGif() {
             @Override
             public void onClick(Doc doc) {
-                Intent intent=new Intent(Activity_Wall.this,ActivityGif.class);
-                String src=doc.getPreview().getVideo().getSrc();
-                String name=doc.getTitle();
-                intent.putExtra("url",src);
-                intent.putExtra("name",name);
+                Intent intent = new Intent(Activity_Wall.this, ActivityGif.class);
+                String src = doc.getPreview().getVideo().getSrc();
+                String name = doc.getTitle();
+                intent.putExtra("url", src);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });

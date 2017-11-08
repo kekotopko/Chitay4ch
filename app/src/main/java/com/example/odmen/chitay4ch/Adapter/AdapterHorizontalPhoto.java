@@ -38,7 +38,7 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
     }
 
     public void setData(List<Photo> data) {
-        if(data!=null) {
+        if (data != null) {
             photos.clear();
             photos.addAll(data);
         }

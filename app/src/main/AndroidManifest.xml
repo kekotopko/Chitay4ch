@@ -19,10 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Wall">
-        </activity>
+        <activity android:name=".Activity_Wall"></activity>
         <activity android:name=".ActivityGif">
-
         </activity>
     </application>
 

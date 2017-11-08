@@ -70,7 +70,7 @@ public class AdapterHorizontalVideo extends RecyclerView.Adapter<AdapterHorizont
 
         }
         holder.imageVideo.setLayoutParams(layoutParams);
-        if (videos.get(position).getPhoto_640()!=null) {
+        if (videos.get(position).getPhoto_640() != null) {
             photo = videos.get(position).getPhoto_640();
         } else if (videos.get(position).getPhoto_800() != null) {
             photo = videos.get(position).getPhoto_800();
@@ -79,7 +79,7 @@ public class AdapterHorizontalVideo extends RecyclerView.Adapter<AdapterHorizont
         } else {
             photo = videos.get(position).getPhoto_130();
         }
-        Log.e("lukas",photo);
+        Log.e("lukas", photo);
         holder.playideo.setVisibility(View.VISIBLE);
         Picasso.with(holder.itemView.getContext()).load(photo).into(holder.imageVideo);
     }

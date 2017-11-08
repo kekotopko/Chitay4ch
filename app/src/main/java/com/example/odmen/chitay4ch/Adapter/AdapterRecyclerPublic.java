@@ -27,12 +27,9 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
 
     public interface MyonClick {
         void click(Group group);
+
         void clickstart(Group group);
     }
-
-
-
-
 
 
     public AdapterRecyclerPublic(List<Group> items, MyonClick click) {
@@ -51,7 +48,7 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Group item = itemss.get(position);
         holder.name.setText(item.getName());
-        holder.idpublic.setText("@"+String.valueOf(item.getScreen_name()));
+        holder.idpublic.setText("@" + String.valueOf(item.getScreen_name()));
         Picasso.with(holder.image.getContext()).load(item.getPhoto_50()).into(holder.image);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -76,8 +73,6 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
         });
 
 
-
-
     }
 
     @Override
@@ -95,7 +90,7 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.namepublic);
             image = (ImageView) itemView.findViewById(R.id.imageViewgro);
-            idpublic= (TextView) itemView.findViewById(R.id.name2);
+            idpublic = (TextView) itemView.findViewById(R.id.name2);
 
             itemView.setLongClickable(true);
 

@@ -24,7 +24,7 @@ public class Group implements Parcelable {
         this.id = id;
         this.name = name;
         this.photo = photo;
-        this.screen_name=screen_name;
+        this.screen_name = screen_name;
     }
 
     protected Group(Parcel in) {

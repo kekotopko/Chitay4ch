@@ -7,5 +7,5 @@ import java.util.List;
  */
 
 public class Data {
-    public List<Group>response;
+    public List<Group> response;
 }

@@ -15,12 +15,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class App extends Application {
 
-    private static  VkGroupApi vkGroupApi;
+    private static VkGroupApi vkGroupApi;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
 
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -36,10 +35,10 @@ public class App extends Application {
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        vkGroupApi= retrofit.create(VkGroupApi.class);
+        vkGroupApi = retrofit.create(VkGroupApi.class);
     }
 
-    public static VkGroupApi getVkGroupApi(){
+    public static VkGroupApi getVkGroupApi() {
         return vkGroupApi;
     }
 }

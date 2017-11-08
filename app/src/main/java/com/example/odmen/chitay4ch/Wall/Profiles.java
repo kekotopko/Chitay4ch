@@ -25,7 +25,7 @@ public class Profiles {
     }
 
     public String getName() {
-        return first_name+" "+last_name;
+        return first_name + " " + last_name;
     }
 
     public String getPhoto_200() {
