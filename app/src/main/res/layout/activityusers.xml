@@ -2,44 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:clickable="true"/>
-
         <LinearLayout
-            android:id="@+id/liner"
+            android:id="@+id/usliner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView2"
             android:layout_margin="3dp"
             android:background="@drawable/editeextstyle"
             android:orientation="horizontal"
             android:padding="2dp">
 
             <EditText
-                android:id="@+id/editname"
+                android:id="@+id/useditname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="15"
-                android:textSize="15dp"
                 android:layout_gravity="center"
-                android:padding="9dp"
+                android:layout_weight="15"
                 android:background="@null"
-                android:hint="@string/editTestIdPublic"
-                android:textColorLink="#000000" />
+                android:hint="Введите id пользователя"
+                android:padding="9dp"
+                android:textColorLink="#000000"
+                android:textSize="15dp" />
 
             <ImageView
-                android:id="@+id/imagePoisk"
+                android:id="@+id/usimagePoisk"
                 android:layout_width="43dp"
                 android:layout_height="41dp"
                 android:layout_gravity="right"
@@ -48,13 +39,15 @@
                 app:srcCompat="@drawable/checked" />
 
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rececler"
+            android:id="@+id/usrecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/liner">
+            android:layout_below="@+id/usliner">
 
         </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
+
 </LinearLayout>

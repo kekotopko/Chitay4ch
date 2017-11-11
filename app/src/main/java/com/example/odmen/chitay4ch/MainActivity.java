@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.odmen.chitay4ch.Adapter.AdapterRecyclerPublic;
 import com.example.odmen.chitay4ch.Groups.Data;
 import com.example.odmen.chitay4ch.Groups.Group;
-import com.example.odmen.chitay4ch.Wall.Profiles;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     List<Group> items;
     DBuser dBuser;
     EditText editname;
-    ImageView imageView, imageAvatar;
+    ImageView imageView, imageAvatar,imageViewtest;
     private AdapterRecyclerPublic adapter;
 
     @Override
@@ -40,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageAvatar = (ImageView) findViewById(R.id.repimageAvatar);
         editname = (EditText) findViewById(R.id.editname);
         imageView.setOnClickListener(this);
+        imageViewtest= (ImageView) findViewById(R.id.imageView2);
+        imageViewtest.setOnClickListener(this);
         items = new ArrayList<>();
         dBuser = new DBuser(this);
         listfromdb();
@@ -95,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 break;
+            case R.id.imageView2:
+                Intent intent=new Intent(MainActivity.this,ActivityUsers.class);
+                startActivity(intent);
         }
     }
 

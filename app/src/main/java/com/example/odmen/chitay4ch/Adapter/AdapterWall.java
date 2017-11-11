@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
+import com.example.odmen.chitay4ch.Users.Users;
 import com.example.odmen.chitay4ch.Wall.Groups;
 import com.example.odmen.chitay4ch.Wall.Post;
 import com.example.odmen.chitay4ch.Wall.Profiles;
@@ -32,9 +33,9 @@ import java.util.Locale;
 
 public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
     private List<Post> posts;
-    private Group group;
     private LoadClick loadClick;
     private String name;
+    private String image;
     private List<Profiles> profilesList;
     private List<Groups> groupsList;
     private AdapterGif.ClickGif clickGif;
@@ -43,14 +44,15 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         this.clickGif = clickGif;
     }
 
-    public AdapterWall(List<Post> posts, List<Profiles> profilesList, List<Groups> groupsList, Group group, String name, LoadClick loadClick) {
+    public AdapterWall(List<Post> posts, List<Profiles> profilesList, List<Groups> groupsList, String image, String name, LoadClick loadClick) {
         this.posts = posts;
-        this.group = group;
+        this.image=image;
         this.loadClick = loadClick;
         this.name = name;
         this.profilesList = profilesList;
         this.groupsList = groupsList;
     }
+
 
 
     public interface LoadClick {
@@ -90,7 +92,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
                 holder.textWall.setText(posts.get(position).getText());
                 holder.textWall.setVisibility(View.VISIBLE);
             }
-            Picasso.with(holder.image.getContext()).load(group.getPhoto_50()).into(holder.image);
+            Picasso.with(holder.image.getContext()).load(image).into(holder.image);
             holder.textdate.setText(String.valueOf(dateFormat.format(date1).toLowerCase()));
 
             holder.adapterHorizontalPhoto.setData(posts.get(position).getlistphoto());

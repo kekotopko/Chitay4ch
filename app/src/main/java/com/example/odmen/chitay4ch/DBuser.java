@@ -21,6 +21,13 @@ public class DBuser extends SQLiteOpenHelper {
                 + "name text,"
                 + "scrn_name text,"
                 + "image text" + ");");
+
+        db.execSQL("create table users ("
+                + "_id integer primary key autoincrement,"
+                + "id integer,"
+                + "first_name text,"
+                + "last_name text,"
+                + "image text" + ");");
     }
 
     @Override
