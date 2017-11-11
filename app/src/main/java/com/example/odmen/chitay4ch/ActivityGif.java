@@ -1,14 +1,19 @@
 package com.example.odmen.chitay4ch;
 
+import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toolbar;
 
 
 import java.io.IOException;
@@ -21,6 +26,8 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
     SurfaceView gifvideo;
     MediaPlayer mediaPlayer;
     String url;
+    ProgressBar progressBar;
+    //private static ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,10 +37,11 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
         setTitle(getIntent().getStringExtra("name"));
         Log.d("gifurl", url);
         gifvideo = (SurfaceView) findViewById(R.id.gifimage);
+        progressBar = (ProgressBar) findViewById(R.id.progressBargif);
+        progressBar.setVisibility(View.VISIBLE);
+        //progressDialog=ProgressDialog.show(this,"","Loading...",true);
         try {
-
             playVideo(url);
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,6 +91,8 @@ public class ActivityGif extends AppCompatActivity implements MediaPlayer.OnPrep
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
+        //progressDialog.dismiss();
+        progressBar.setVisibility(View.GONE);
         mediaPlayer.start();
 
 

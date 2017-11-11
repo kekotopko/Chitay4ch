@@ -42,12 +42,12 @@ public class AdapterAudio extends RecyclerView.Adapter<AdapterAudio.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String title=audios.get(position).getTitle();
-        if(title.length()>1) {
+        String title = audios.get(position).getTitle();
+        if (title.length() > 1) {
             holder.title.setText(title);
         }
-        String artist=audios.get(position).getArtist();
-        if (artist.length()>1) {
+        String artist = audios.get(position).getArtist();
+        if (artist.length() > 1) {
             holder.artist.setText(artist);
         }
 
