@@ -6,7 +6,6 @@ import android.content.Context;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
-import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -22,8 +21,8 @@ public class App extends Application {
 
     private static VkGroupApi vkGroupApi;
     Context context=App.this;
-    String proxyHost = "95.213.235.35";
-    int proxyPort = 3752;
+    //String proxyHost = "95.213.235.35";
+   // int proxyPort = 3752;
 
     @Override
     public void onCreate() {
@@ -31,8 +30,8 @@ public class App extends Application {
 
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .readTimeout(25, TimeUnit.SECONDS)
-                .proxy(new java.net.Proxy(java.net.Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort)));
+                .readTimeout(25, TimeUnit.SECONDS);
+                //.proxy(new java.net.Proxy(java.net.Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort)));
 
 
 

@@ -1,7 +1,7 @@
 package com.example.odmen.chitay4ch.Adapter;
 
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.util.Log;
@@ -146,7 +146,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
             holder.horizontallist.setVisibility(View.GONE);
         } else {
             holder.horizontallist.setVisibility(View.VISIBLE);
-            SnapHelper helper=new LinearSnapHelper();
+            SnapHelper helper=new PagerSnapHelper();
             holder.horizontallist.setOnFlingListener(null);
             helper.attachToRecyclerView(holder.horizontallist);
         }
@@ -163,7 +163,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
 
         } else {
             holder.videolist.setVisibility(View.VISIBLE);
-            SnapHelper helper_vid=new LinearSnapHelper();
+            SnapHelper helper_vid=new PagerSnapHelper();
             holder.videolist.setOnFlingListener(null);
             helper_vid.attachToRecyclerView(holder.videolist);
         }
@@ -257,7 +257,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         holder.reptextdate.setText(String.valueOf(dateFormat.format(date1).toLowerCase()));
 
         holder.adapterHorizontalPhoto.setData(post.getlistphoto());
-        SnapHelper rep_helper=new LinearSnapHelper();
+        SnapHelper rep_helper=new PagerSnapHelper();
         holder.rephorizontallist.setOnFlingListener(null);
         rep_helper.attachToRecyclerView(holder.rephorizontallist);
 
@@ -267,7 +267,7 @@ public class AdapterWall extends RecyclerView.Adapter<AdapterWall.ViewHolder> {
         //holder.adapterAudio.setRowIndex(position);
 
         holder.horizontalVideo.setData(post.getlistvideo());
-        SnapHelper rep_helper_vid=new LinearSnapHelper();
+        SnapHelper rep_helper_vid=new PagerSnapHelper();
         holder.repvideolist.setOnFlingListener(null);
         rep_helper_vid.attachToRecyclerView(holder.repvideolist);
         //holder.horizontalVideo.setRowIndex(position);
