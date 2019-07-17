@@ -18,12 +18,21 @@ public class Users implements Parcelable{
     String last_name;
     @SerializedName("photo_200")
     String photo_200;
+    @SerializedName("domain")
+    String domain;
 
-    public Users(int id, String first_name, String last_name, String photo_200) {
+    String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public Users(int id, String first_name, String last_name, String photo_200,String type) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.photo_200 = photo_200;
+        this.type=type;
     }
 
     protected Users(Parcel in) {
@@ -72,5 +81,9 @@ public class Users implements Parcelable{
         parcel.writeString(first_name);
         parcel.writeString(last_name);
         parcel.writeString(photo_200);
+    }
+
+    public String getDomain() {
+        return domain;
     }
 }

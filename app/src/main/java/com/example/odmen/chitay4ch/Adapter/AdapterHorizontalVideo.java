@@ -1,6 +1,7 @@
 package com.example.odmen.chitay4ch.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.odmen.chitay4ch.R;
-import com.example.odmen.chitay4ch.Wall.Photo;
 import com.example.odmen.chitay4ch.Wall.Video;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +26,19 @@ public class AdapterHorizontalVideo extends RecyclerView.Adapter<AdapterHorizont
     List<Video> videos = new ArrayList<>();
     private int mRowIndex = -1;
     String photo;
+    ClickVideo clickVideo;
 
 
     public AdapterHorizontalVideo() {
 
+    }
+
+    public interface ClickVideo{
+        void clickVideo(Video video);
+    }
+
+    public void setClickVideo(ClickVideo clickVideo){
+        this.clickVideo=clickVideo;
     }
 
     public void setData(List<Video> data) {
@@ -50,23 +59,30 @@ public class AdapterHorizontalVideo extends RecyclerView.Adapter<AdapterHorizont
         return viewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(AdapterHorizontalVideo.ViewHolder holder, int position) {
-        Activity activity = (Activity) holder.itemView.getContext();
-        ViewGroup.LayoutParams layoutParams = holder.imageVideo.getLayoutParams();
-        float prop = (float) videos.get(position).getWidth() / (float) videos.get(position).getHeight();
+    private int getWindowWidth(Context context){
+        Activity activity = (Activity) context;
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int widthScr = size.x;
-        if (videos.size() == 1) {
+        return widthScr;
+    }
+
+    @Override
+    public void onBindViewHolder(AdapterHorizontalVideo.ViewHolder holder, final int position) {
+        Activity activity = (Activity) holder.itemView.getContext();
+        Video video=videos.get(position);
+        ViewGroup.LayoutParams layoutParams = holder.imageVideo.getLayoutParams();
+        float prop = (float) video.getWidth() / (float) video.getHeight();
+        int widthScr=getWindowWidth(holder.imageVideo.getContext());
+        if (position==0) {
             layoutParams.width = widthScr;
             layoutParams.height = (int) ((float) widthScr / prop);
         } else {
-
-            //float params = holder.imagePhoto.getContext().getResources().getDisplayMetrics().density;
-            int height = holder.imageVideo.getLayoutParams().height;
-            layoutParams.width = (int) (prop * height);
+            Video first=videos.get(0);
+            float firstProp = (float) first.getWidth() / (float) first.getHeight();
+            layoutParams.height = (int) ((float) widthScr / firstProp);
+            layoutParams.width = (int) (prop * (float) layoutParams.height);
 
         }
         holder.imageVideo.setLayoutParams(layoutParams);
@@ -81,6 +97,14 @@ public class AdapterHorizontalVideo extends RecyclerView.Adapter<AdapterHorizont
         }
         Log.e("lukas", photo);
         holder.playideo.setVisibility(View.VISIBLE);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickVideo!=null){
+                    clickVideo.clickVideo(videos.get(position));
+                }
+            }
+        });
         Picasso.with(holder.itemView.getContext()).load(photo).into(holder.imageVideo);
     }
 

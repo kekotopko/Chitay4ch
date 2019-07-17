@@ -20,14 +20,15 @@ public class DBuser extends SQLiteOpenHelper {
                 + "vkid integer,"
                 + "name text,"
                 + "scrn_name text,"
-                + "image text" + ");");
+                + "image text,"
+                + "type text"+ ");");
 
-        db.execSQL("create table users ("
+        /*db.execSQL("create table users ("
                 + "_id integer primary key autoincrement,"
                 + "id integer,"
                 + "first_name text,"
                 + "last_name text,"
-                + "image text" + ");");
+                + "image text" + ");");*/
     }
 
     @Override

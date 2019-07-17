@@ -2,132 +2,231 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/editeextstyle"
+    android:layout_marginBottom="10dp"
+    android:background="#ffffff"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/itemwall"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true">
 
-        <RelativeLayout
-            android:id="@+id/conteiner"
+
+        <LinearLayout
+            android:id="@+id/itemwall"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="4dp">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
 
             <RelativeLayout
-                android:id="@+id/title"
+                android:id="@+id/conteiner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0.5dp">
+                android:layout_height="match_parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageAvatar"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
+                <RelativeLayout
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="0.5dp"
 
-                    app:srcCompat="@mipmap/ic_launcher" />
+                    android:clickable="true">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_toEndOf="@+id/imageAvatar"
-                    android:layout_toRightOf="@+id/imageAvatar"
-                    android:orientation="vertical"
-                    android:text="text">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageAvatar"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="12dp"
+                        app:srcCompat="@mipmap/ic_launcher" />
 
-                    <TextView
-                        android:id="@+id/textname"
+                    <LinearLayout
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toEndOf="@+id/imageAvatar"
+                        android:layout_toRightOf="@+id/imageAvatar"
+                        android:orientation="vertical"
+                        android:text="text">
+
+                        <TextView
+                            android:id="@+id/textname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="date" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_below="@id/title"
+                    android:layout_height="1dp"
+                    android:background="#D3D3D3"
+                    />
+                <LinearLayout
+                    android:id="@+id/text_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    android:minHeight="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_marginTop="1dp"
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:autoLink="web"
+                        android:text="text"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_layout">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listgif"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/listPhoto"
+                    android:visibility="gone">
+
+                </android.support.v7.widget.RecyclerView>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listvideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/listgif"
+                    android:visibility="gone">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listaudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/listvideo"
+                    android:visibility="gone">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <LinearLayout
+                    android:id="@+id/copyhistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/listaudio"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_poll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/copyhistory"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/TextPoll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Text"
                         android:textColor="#000000"
                         android:textStyle="bold" />
 
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/pollList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/TextPoll"
+                        android:layout_marginTop="4dp">
+
+                    </android.support.v7.widget.RecyclerView>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/likelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/layout_poll"
+                    android:background="@drawable/frames"
+                    android:visibility="visible">
+
                     <TextView
-                        android:id="@+id/textdate"
+                        android:id="@+id/countViews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="date" />
-                </LinearLayout>
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="n" />
+
+                    <ImageView
+                        android:id="@+id/views"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/countViews"
+                        android:layout_marginLeft="10dp"
+                        app:srcCompat="@drawable/reply" />
+
+                    <ImageView
+                        android:id="@+id/like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        app:srcCompat="@drawable/heart" />
+
+                    <TextView
+                        android:id="@+id/countLikes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/like"
+                        android:layout_toStartOf="@+id/like"
+                        android:text="count" />
+
+
+                </RelativeLayout>
 
 
             </RelativeLayout>
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
-                android:layout_marginTop="2dp"
-                android:text="text"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="12dp"
-                android:textColor="#000000" />
+        </LinearLayout>
 
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/listPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/listgif"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_below="@+id/listPhoto">
-
-            </android.support.v7.widget.RecyclerView>
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/listvideo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/listgif"
-                android:visibility="gone">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/listaudio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/listvideo"
-                android:visibility="gone">
-
-            </android.support.v7.widget.RecyclerView>
-
-            <LinearLayout
-                android:id="@+id/copyhistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/listaudio"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-
-        </RelativeLayout>
-    </LinearLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#D3D3D3" />
 
 
 </RelativeLayout>

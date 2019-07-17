@@ -9,12 +9,14 @@ import java.util.List;
  */
 
 public class Response {
+    @SerializedName("items")
     public List<Post> items;
 
     @SerializedName("profiles")
     public List<Profiles> profiles;
     @SerializedName("groups")
     public List<Groups> groups;
+
 
 
 }

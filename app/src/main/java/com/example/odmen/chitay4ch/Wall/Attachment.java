@@ -17,7 +17,8 @@ public class Attachment {
     Video video;
     @SerializedName("doc")
     Doc doc;
-
+    @SerializedName("poll")
+    Poll poll;
 
     public String getType() {
         return type;
@@ -33,6 +34,10 @@ public class Attachment {
 
     public Video getVideo() {
         return video;
+    }
+
+    public Poll getPoll() {
+        return poll;
     }
 
     public Doc getDoc() {

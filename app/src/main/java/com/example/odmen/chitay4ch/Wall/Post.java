@@ -1,6 +1,5 @@
 package com.example.odmen.chitay4ch.Wall;
 
-import com.example.odmen.chitay4ch.Groups.Group;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -26,6 +25,12 @@ public class Post {
     List<Attachment> attachmentseslist;
     @SerializedName("copy_history")
     List<Post> reposts;
+
+    @SerializedName("likes")
+    public Likes likes;
+
+    @SerializedName("reposts")
+    public Reposts reposts_count;
 
 
     public long getOwner_id() {
@@ -98,6 +103,19 @@ public class Post {
             }
         }
         return docs;
+    }
+
+    public Poll getPollList(){
+        Poll poll=null;
+        if(attachmentseslist!=null){
+            for(int i=0;i<attachmentseslist.size();i++){
+                Attachment attachment=attachmentseslist.get(i);
+                if(attachment.getType().equals("poll")){
+                    poll=attachment.getPoll();
+                }
+            }
+        }
+        return poll;
     }
 
 

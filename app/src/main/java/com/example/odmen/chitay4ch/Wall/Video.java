@@ -21,6 +21,30 @@ public class Video {
     int width;
     @SerializedName("height")
     int height;
+    @SerializedName("platform")
+    String platform;
+    @SerializedName("access_key")
+    String access_key;
+    @SerializedName("id")
+    long id;
+    @SerializedName("owner_id")
+    long owner_id;
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public String getAccess_key() {
+        return access_key;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getOwner_id() {
+        return owner_id;
+    }
 
     public String getTitle() {
         return title;

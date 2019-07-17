@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
 import com.example.odmen.chitay4ch.Users.Users;
 import com.squareup.picasso.Picasso;
@@ -51,6 +50,7 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.ViewHolder> 
         final Users item = itemss.get(position);
         holder.name.setText(item.getFirst_name()+" "+item.getLast_name());
         Picasso.with(holder.image.getContext()).load(item.getPhoto_200()).into(holder.image);
+        holder.idpublic.setText("@"+String.valueOf(item.getId()));
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

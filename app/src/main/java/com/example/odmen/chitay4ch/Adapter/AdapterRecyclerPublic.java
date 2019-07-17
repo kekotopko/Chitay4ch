@@ -1,7 +1,6 @@
 package com.example.odmen.chitay4ch.Adapter;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.odmen.chitay4ch.Groups.Group;
 import com.example.odmen.chitay4ch.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,18 +19,18 @@ import java.util.List;
  */
 
 public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerPublic.ViewHolder> {
-    List<Group> itemss;
+    List<Owner> itemss;
     String[] menu = new String[]{"Удалить"};
     MyonClick click;
 
     public interface MyonClick {
-        void click(Group group);
+        void click(Owner group);
 
-        void clickstart(Group group);
+        void clickstart(Owner group);
     }
 
 
-    public AdapterRecyclerPublic(List<Group> items, MyonClick click) {
+    public AdapterRecyclerPublic(List<Owner> items, MyonClick click) {
         this.itemss = items;
         this.click = click;
 
@@ -46,7 +44,8 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Group item = itemss.get(position);
+        final Owner item = itemss.get(position);
+
         holder.name.setText(item.getName());
         holder.idpublic.setText("@" + String.valueOf(item.getScreen_name()));
         Picasso.with(holder.image.getContext()).load(item.getPhoto_50()).into(holder.image);
@@ -71,7 +70,6 @@ public class AdapterRecyclerPublic extends RecyclerView.Adapter<AdapterRecyclerP
                 click.clickstart(item);
             }
         });
-
 
     }
 

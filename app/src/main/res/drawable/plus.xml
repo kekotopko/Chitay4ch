@@ -1,11 +1,8 @@
 <!-- drawable/plus_circle_outline.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="455dp"
-    android:height="455dp"
-    android:viewportWidth="455"
-    android:viewportHeight="455">
-
-    <path
-        android:fillColor="#000000"
-        android:pathData="M 455 212.5 L 242.5 212.5 L 242.5 0 L 212.5 0 L 212.5 212.5 L 0 212.5 L 0 242.5 L 212.5 242.5 L 212.5 455 L 242.5 455 L 242.5 242.5 L 455 242.5 Z" />
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path android:fillColor="#FF0000" android:pathData="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
 </vector>

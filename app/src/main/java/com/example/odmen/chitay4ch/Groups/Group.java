@@ -20,7 +20,9 @@ public class Group implements Parcelable {
     @SerializedName("screen_name")
     String screen_name;
 
-    public Group(int id, String name, String photo, String screen_name) {
+    String type;
+
+    public Group(int id, String name, String photo, String screen_name,String type) {
         this.id = id;
         this.name = name;
         this.photo = photo;

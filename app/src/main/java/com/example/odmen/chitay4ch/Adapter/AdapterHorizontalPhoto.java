@@ -1,27 +1,21 @@
 package com.example.odmen.chitay4ch.Adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.example.odmen.chitay4ch.R;
-import com.example.odmen.chitay4ch.Wall.Attachment;
-import com.example.odmen.chitay4ch.Wall.Doc;
 import com.example.odmen.chitay4ch.Wall.Photo;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
  * Created by odmen on 25.10.2017.
@@ -58,33 +52,40 @@ public class AdapterHorizontalPhoto extends RecyclerView.Adapter<AdapterHorizont
         return viewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Activity activity = (Activity) holder.itemView.getContext();
-        ViewGroup.LayoutParams layoutParams = holder.imagePhoto.getLayoutParams();
-        float prop = (float) photos.get(position).getWidth() / (float) photos.get(position).getHeight();
+    private int getWindowWidth(Context context){
+        Activity activity = (Activity) context;
         Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int widthScr = size.x;
-        if (photos.size() == 1) {
+        return widthScr;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Photo ph=photos.get(position);
+        ViewGroup.LayoutParams layoutParams = holder.imagePhoto.getLayoutParams();
+        float prop = (float) ph.getWidth() / (float) ph.getHeight();
+        int widthScr=getWindowWidth(holder.imagePhoto.getContext());
+        if (position==0) {
             layoutParams.width = widthScr;
             layoutParams.height = (int) ((float) widthScr / prop);
         } else {
-
-            //float params = holder.imagePhoto.getContext().getResources().getDisplayMetrics().density;
-            int height = holder.imagePhoto.getLayoutParams().height;
-            layoutParams.width = (int) (prop * height);
+            Photo first=photos.get(0);
+            float firstProp = (float) first.getWidth() / (float) first.getHeight();
+            layoutParams.height = (int) ((float) widthScr / firstProp);
+            layoutParams.width = (int) (prop * (float) layoutParams.height);
 
         }
         holder.imagePhoto.setLayoutParams(layoutParams);
-        if (photos.get(position).getPhoto604() != null) {
-            photo = photos.get(position).getPhoto604();
-        } else if (photos.get(position).getPhoto130() != null) {
-            photo = photos.get(position).getPhoto130();
+        if (ph.getPhoto604() != null) {
+            photo = ph.getPhoto604();
+        } else if (ph.getPhoto130() != null) {
+            photo = ph.getPhoto130();
         } else {
-            photo = photos.get(position).getPhoto75();
+            photo = ph.getPhoto75();
         }
+
 
         Picasso.with(holder.itemView.getContext()).load(photo).into(holder.imagePhoto);
     }
